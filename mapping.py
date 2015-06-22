@@ -26,8 +26,7 @@ class text_of_element_located(object):
         return len(self.value) > 0
 
 def number_in_cell(row, column):
-    xpath = "//div[@class='tile-container']/div[contains(@class, 'tile-position-" + str(row) + "-" + str(column) + "')][last()]"
-    el = text_of_element_located(xpath)
+    el = text_of_element_located(world.current_page["cell"](row, column))
     WebDriverWait(world.browser, 2).until(el)
     return int(el.value)
 
@@ -37,6 +36,7 @@ site_mapping = {
         "body": "//body",
         "number_in_cell": number_in_cell,
         "is_game_over": lambda text: "//div[@class='game-message game-over']/p[text()='" + str(text) + "']",
-        "score":"//div[@class='score-container']"
+        "score": "//div[@class='score-container']",
+        "cell": lambda row, column: "//div[@class='tile-container']/div[contains(@class, 'tile-position-" + str(row) + "-" + str(column) + "')][last()]"
     }
 }
