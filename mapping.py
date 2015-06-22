@@ -4,7 +4,7 @@ Created on Jun 20, 2015
 @author: dimon24
 '''
 from lettuce import world
-from selenium.common.exceptions import NoSuchElementException, TimeoutException, StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -27,12 +27,9 @@ class text_of_element_located(object):
 
 def number_in_cell(row, column):
     xpath = "//div[@class='tile-container']/div[contains(@class, 'tile-position-" + str(row) + "-" + str(column) + "')][last()]"
-    try:
-        el = text_of_element_located(xpath)
-        WebDriverWait(world.browser, 2).until(el)
-        return int(el.value)
-    except TimeoutException:
-        return 0
+    el = text_of_element_located(xpath)
+    WebDriverWait(world.browser, 2).until(el)
+    return int(el.value)
 
 site_mapping = {
     "home": {

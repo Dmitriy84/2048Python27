@@ -41,4 +41,4 @@ def start_random_play_with_keys(step, keys):
 
 @step("Show scores")
 def show_scores(step):
-    print "FINAL SCORES: " + world.browser.find_element_by_xpath(world.current_page["score"]).text
+    print "FINAL SCORES: " + world.browser.find_element_by_xpath(world.current_page["score"]).text.split()[0]
